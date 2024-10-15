@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<StartupObject>AVASMENA.Program</StartupObject>
+		<ApplicationIcon>files\522beb89-0e04-440d-a311-6acd0091bdeb.ico</ApplicationIcon>
+		<PlatformTarget>x64</PlatformTarget>
+		<BaseOutputPath>bin\</BaseOutputPath>
+		<Platforms>AnyCPU;x64</Platforms>
+		<ErrorReport>none</ErrorReport>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>nuget.pack</Title>
+		<RepositoryType>git</RepositoryType>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <DebugType>embedded</DebugType>
+	  <Optimize>True</Optimize>
+	  <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <DebugType>embedded</DebugType>
+	  <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="bin\**" />
+	  <EmbeddedResource Remove="bin\**" />
+	  <None Remove="bin\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="files\shtraph.txt">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="ClosedXML" Version="0.102.3" />
+	  <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	  <PackageReference Include="Telegram.Bot" Version="19.0.0" />
+	</ItemGroup>
+
+</Project>
