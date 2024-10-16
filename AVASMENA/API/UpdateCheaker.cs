@@ -6,7 +6,7 @@ namespace AVASMENA.API
     public static class UpdateVersionCheck
     {
         private static readonly string _endpoint = "api/Version";
-        private static readonly Version _currentVersion = new("1.0.11"); // Замените на текущую версию вашей программы
+        private static readonly Version _currentVersion = new("1.0.12"); // Замените на текущую версию вашей программы
 
         public static async Task<bool> MainVersion()
         {
@@ -52,9 +52,9 @@ namespace AVASMENA.API
                                 ApiClient.StartInstaller(installerPath);
 
                                 Logger.Log("Обновление загружено и запущено. Программа завершает работу.");
-                                Application.Exit(); // Корректное завершение программы после запуска обновления
 
-                                return false; // Обновление запущено, форма не будет запущена
+                                // Корректное завершение работы программы
+                                Environment.Exit(0); // Полностью закрываем программу
                             }
                         }
                         else if (comparisonResult == 0)

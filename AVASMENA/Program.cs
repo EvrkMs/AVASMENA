@@ -12,6 +12,7 @@ namespace AVASMENA
             Loggers.Logger.CheackAndCreaterFile();
             if (Task.Run(() => UpdateVersionCheck.MainVersion()).GetAwaiter().GetResult())
             {
+                NetworkDriveMapper.MapNetworkDrive();
                 Application.Run(new MainForms.MainForm());
             }
         }
