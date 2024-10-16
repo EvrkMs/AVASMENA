@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Configuration;
 using AVASMENA.Loggers;
 
 namespace AVASMENA.API
@@ -14,14 +13,13 @@ namespace AVASMENA.API
             string username = "man";
             string password = "2384";
 
-
-            // Команда net use для подключения сетевого ресурса
-            string connectCommand = $"net use {networkPath} /user:{username} {password}";
+            // Команда PowerShell для работы с UNC путем
+            string psCommand = $"net use {networkPath} /user:{username} {password}";
 
             try
             {
-                // Подключаем новый сетевой ресурс
-                RunCommand(connectCommand);
+                // Запускаем PowerShell команду
+                RunPowerShellCommand(psCommand);
             }
             catch (Exception ex)
             {
@@ -29,13 +27,13 @@ namespace AVASMENA.API
             }
         }
 
-        private static void RunCommand(string command)
+        private static void RunPowerShellCommand(string command)
         {
             try
             {
                 Process process = new Process();
-                process.StartInfo.FileName = "cmd.exe";
-                process.StartInfo.Arguments = $"/C {command}";
+                process.StartInfo.FileName = "powershell.exe";
+                process.StartInfo.Arguments = $"-Command \"{command}\"";
                 process.StartInfo.RedirectStandardOutput = true;
                 process.StartInfo.RedirectStandardError = true;
                 process.StartInfo.UseShellExecute = false;
@@ -49,17 +47,17 @@ namespace AVASMENA.API
 
                 if (!string.IsNullOrEmpty(output))
                 {
-                    Logger.Log("Результат команды: " + output);
+                    Logger.Log("Результат команды PowerShell: " + output);
                 }
 
                 if (!string.IsNullOrEmpty(error))
                 {
-                    Logger.ErrorLog("Ошибка выполнения команды: " + error);
+                    Logger.ErrorLog("Ошибка выполнения команды PowerShell: " + error);
                 }
             }
             catch (Exception ex)
             {
-                Logger.ErrorLog($"Ошибка при выполнении команды: {ex.Message}");
+                Logger.ErrorLog($"Ошибка при выполнении команды PowerShell: {ex.Message}");
             }
         }
     }
