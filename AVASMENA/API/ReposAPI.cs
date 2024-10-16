@@ -123,16 +123,11 @@ namespace AVASMENA.API
                     UseShellExecute = true // Используем ShellExecute для запуска установщика
                 };
 
-                using var process = Process.Start(processInfo);
-                if (process != null)
-                {
-                    process.WaitForExit(); // Ждем завершения процесса установки
-                    Logger.Log("Установщик завершил свою работу.");
-                }
-                else
-                {
-                    Logger.ErrorLog("Не удалось запустить установщик.");
-                }
+                Process.Start(processInfo); // Запускаем установщик
+
+                Logger.Log("Установщик запущен. Программа завершает работу.");
+
+                Environment.Exit(0); // Завершаем программу сразу после запуска установщика
             }
             catch (Exception ex)
             {
