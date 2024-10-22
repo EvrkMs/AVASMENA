@@ -6,7 +6,7 @@ namespace AVASMENA.API
     public static class UpdateVersionCheck
     {
         private static readonly string _endpoint = "api/Version";
-        private static readonly Version _currentVersion = new("1.0.13"); // Замените на текущую версию вашей программы
+        private static readonly Version _currentVersion = new("1.0.14"); // Замените на текущую версию вашей программы
 
         public static async Task<bool> MainVersion()
         {

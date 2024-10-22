@@ -10,7 +10,7 @@ namespace AVASMENA.API
         {
             // Получаем путь из app.config
             string networkPath = "\\\\45.88.209.160\\AVASMENAUpdate";
-            string username = "man";
+            string username = "power";
             string password = "2384";
 
             // Команда PowerShell для работы с UNC путем
